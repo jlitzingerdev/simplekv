@@ -42,6 +42,8 @@ func (n *Node) Timestamp() int64 {
 	return n.timestamp
 }
 
+// Returns -1, 0, or 1 depending on whether lhs.key is less than, equal to,
+// or greater than rhs.key
 func (lhs *Node) Compare(rhs *Node) int {
 	return bytes.Compare(lhs.key, rhs.key)
 }
@@ -51,6 +53,8 @@ func (lhs *Node) Less(rhs *Node) bool {
 	return r == -1
 }
 
+// Returns -1, 0, or 1 depending on whether lhs is less than, equal to,
+// or greater than key
 func (lhs *Node) CompareKey(key []byte) int {
 	return bytes.Compare(lhs.key, key)
 }
