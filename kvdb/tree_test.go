@@ -1,6 +1,7 @@
 package kvdb_test
 
 import (
+	"fmt"
 	"github.com/jlitzingerdev/simple-kv/kvdb"
 	"testing"
 )
@@ -82,4 +83,26 @@ func TestDelete(t *testing.T) {
 func TestDeleteNil(t *testing.T) {
 	tr := kvdb.NewTree()
 	tr.Delete([]byte("h"))
+}
+
+func TestPutGet(t *testing.T) {
+	tr := kvdb.NewTree()
+	tr.Insert([]byte("foo"), []byte("bar"))
+	tr.Insert([]byte("biz"), []byte("baz"))
+
+	tr.InOrder(func(node *kvdb.Node) {
+		fmt.Printf("%s, %s\n", string(node.Key()), string(node.Value()))
+	})
+
+	v := tr.Get([]byte("foo"))
+	if string(v) != "bar" {
+		t.Errorf("%v != bar", v)
+		t.FailNow()
+	}
+
+	v = tr.Get([]byte("biz"))
+	if string(v) != "baz" {
+		t.Errorf("%v != baz", v)
+		t.FailNow()
+	}
 }

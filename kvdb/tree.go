@@ -16,6 +16,8 @@
 package kvdb
 
 import (
+	"bytes"
+	"fmt"
 	"sync"
 )
 
@@ -47,7 +49,7 @@ func NewTree() *Tree {
 func (tree *Tree) getNode(key []byte) *Node {
 	target := tree.root
 	for target != nil {
-		c := target.CompareKey(key)
+		c := bytes.Compare(key, target.key)
 		if c == -1 {
 			target = target.left
 		} else if c == 0 && !target.tombstone {
@@ -69,6 +71,7 @@ func (tree *Tree) doInsert(n *Node) *Node {
 			target = &((*target).left)
 		} else if c == 0 {
 			(*target).SetValue(n.value)
+			fmt.Println("existing")
 			return *target
 		} else {
 			target = &((*target).right)
