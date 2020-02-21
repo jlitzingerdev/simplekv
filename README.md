@@ -1,5 +1,11 @@
-Simple Log Structured merge tree based key value store.  This server exposes a
-REST API that accepts three operations, PUT, GET, DELETE.
+Simple Log Structured merge tree based key value store.
+
+# API
+For initial simplicity this server exposes a HTTP API that accepts three
+operations, PUT, GET, DELETE.  While the underlying database apis are written
+to support any byte string, the inital implementation is only going to work
+well with strings.  This is a deliberate simplification meant to be built upon
+as I have interest in doing so.
 
 PUT - adds a new key
 DELETE - Removes a key
