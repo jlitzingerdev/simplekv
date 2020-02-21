@@ -1,0 +1,4 @@
+github.com/go-chi/chi/v4 v4.0.0-rc1 h1:Yv+WYpL04c1RUcMGrPLpITSDxXt48VyxCPgyGyzHYXE=
+github.com/go-chi/chi/v4 v4.0.0-rc1/go.mod h1:Yfiy+5nynjDc7IMJiguACIro1KxlGW2dLUqcroaEUEY=
+golang.org/x/net v0.0.0-20190108155000-395948e2f546/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
+golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
