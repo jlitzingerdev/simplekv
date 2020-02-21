@@ -1,10 +1,12 @@
 package main
 
 import (
-	"fmt"
-	_ "github.com/jlitzingerdev/simple-kv/kvdb"
+	"github.com/jlitzingerdev/simple-kv/api"
+	"github.com/jlitzingerdev/simple-kv/kvdb"
 )
 
 func main() {
-	fmt.Println("vim-go")
+	db := kvdb.InitDb(&kvdb.DbConfig{})
+	s := api.InitServer(db)
+	s.StartServer()
 }
