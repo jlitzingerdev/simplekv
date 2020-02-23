@@ -18,7 +18,6 @@ package kvdb
 import (
 	"bytes"
 	"fmt"
-	"sync"
 )
 
 type Color int
@@ -39,7 +38,6 @@ const (
 
 type Tree struct {
 	root *Node
-	lock sync.Mutex
 }
 
 func NewTree() *Tree {
@@ -198,16 +196,12 @@ func (tree *Tree) reColor(newNode *Node) {
 }
 
 func (tree *Tree) Insert(key, value []byte) {
-	tree.lock.Lock()
-	defer tree.lock.Unlock()
 	n := NewNode(key, value)
 	n = tree.doInsert(n)
 	tree.reColor(n)
 }
 
 func (tree *Tree) Delete(key []byte) {
-	tree.lock.Lock()
-	defer tree.lock.Unlock()
 	n := tree.getNode(key)
 	if n != nil {
 		n.Delete()
@@ -215,8 +209,6 @@ func (tree *Tree) Delete(key []byte) {
 }
 
 func (tree *Tree) Get(key []byte) []byte {
-	tree.lock.Lock()
-	defer tree.lock.Unlock()
 	n := tree.getNode(key)
 	if n != nil {
 		return n.value
